@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Biblioteca Digital</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>📚 Biblioteca Digital</h1>
+    <button id="logoutBtn" style="display:none;">Sair</button>
+  </header>
+
+  <main>
+    <!-- Login -->
+    <section id="login-section" class="active">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
+    </section>
+
+    <!-- Cadastro -->
+    <section id="register-section">
+      <h2>Cadastro</h2>
+      <form id="registerForm">
+        <input type="text" id="regName" placeholder="Nome" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Senha" required>
+        <button type="submit">Cadastrar</button>
+      </form>
+      <p>Já tem conta? <a href="#" id="showLogin">Faça login</a></p>
+    </section>
+
+    <!-- Sistema (após login) -->
+    <section id="system-section">
+      <h2>Gerenciar Livros</h2>
+      <form id="bookForm">
+        <input type="text" id="title" placeholder="Título" required>
+        <input type="text" id="author" placeholder="Autor" required>
+        <input type="text" id="genre" placeholder="Gênero" required>
+        <input type="number" id="year" placeholder="Ano" required>
+        <textarea id="description" placeholder="Descrição" required></textarea>
+        <button type="submit">Adicionar Livro</button>
+      </form>
+
+      <h3>Lista de Livros</h3>
+      <ul id="bookList"></ul>
+    </section>
+  </main>
+
+  <!-- Modal para visualizar/editar -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <h3 id="modalTitle">Detalhes do Livro</h3>
+      <form id="editForm">
+        <input type="text" id="editTitle" placeholder="Título" required>
+        <input type="text" id="editAuthor" placeholder="Autor" required>
+        <input type="text" id="editGenre" placeholder="Gênero" required>
+        <input type="number" id="editYear" placeholder="Ano" required>
+        <textarea id="editDescription" placeholder="Descrição" required></textarea>
+        <button type="submit">Salvar Alterações</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
