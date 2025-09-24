@@ -45,7 +45,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
   document.getElementById("logoutBtn").style.display = "inline-block";
 });
 
-// Logout
+// Logout fiz para sair da conta 
 document.getElementById("logoutBtn").addEventListener("click", () => {
   document.getElementById("system-section").classList.remove("active");
   document.getElementById("login-section").classList.add("active");
@@ -53,7 +53,7 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
   showToast("Você saiu da conta.", "info");
 });
 
-// CRUD de Livros
+// CRUD de Livros 
 const bookForm = document.getElementById("bookForm");
 const bookList = document.getElementById("bookList");
 
@@ -66,6 +66,7 @@ bookForm.addEventListener("submit", (e) => {
   const year = document.getElementById("year").value;
   const description = document.getElementById("description").value;
 
+  // Coloquei para editar e para visualizar
   const li = document.createElement("li");
   li.innerHTML = `
     <span><strong>${title}</strong> - ${author} (${year}) <br><em>${genre}</em></span>
@@ -92,7 +93,7 @@ function removeBook(btn) {
   showToast("Livro removido!", "error");
 }
 
-// Modal de Visualizar/Editar
+// Modal de Visualizar/Editar 
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementById("closeModal");
 const editForm = document.getElementById("editForm");
@@ -122,7 +123,7 @@ window.addEventListener("click", (e) => {
   }
 });
 
-// Salvar edição
+// Salvar edição que fiz no livro 
 editForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
