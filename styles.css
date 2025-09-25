@@ -1,99 +1,99 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f7fa;
-  color: #333;
+  font-family: Arial, sans-serif; /* Fonte padrão */
+  margin: 0; /* Remove margens da página */
+  background: #f5f7fa; /* Cor de fundo */
+  color: #333; /* Cor do texto */
 }
 
 header {
-  background: #004080;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: #004080; /* Cor do cabeçalho */
+  color: white; /* Texto branco */
+  padding: 1rem; /* Espaçamento interno */
+  text-align: center; /* Texto centralizado */
+  display: flex; /* Flexbox para alinhar itens */
+  justify-content: space-between; /* Espaça elementos (título x botão sair) */
+  align-items: center; /* Centraliza verticalmente */
 }
 
 header button {
-  background: #dc3545;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  display: none;
+  background: #dc3545; /* Cor do botão Sair */
+  border: none; /* Remove borda */
+  padding: 8px 15px; /* Espaçamento interno */
+  border-radius: 6px; /* Cantos arredondados */
+  color: white; /* Texto branco */
+  font-weight: bold; /* Texto em negrito */
+  cursor: pointer; /* Cursor em forma de mão */
+  display: none; /* Esconde por padrão */
 }
 
 header button:hover {
-  background: #a71d2a;
+  background: #a71d2a; /* Cor quando passa o mouse */
 }
 
 main {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-width: 600px; /* Largura máxima */
+  margin: 2rem auto; /* Centraliza no meio da tela */
+  padding: 1rem; /* Espaçamento interno */
+  background: white; /* Fundo branco */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra */
 }
 
 h2, h3 {
-  color: #004080;
+  color: #004080; /* Cor dos títulos */
 }
 
 form {
-  display: flex;
+  display: flex; /* Organiza os inputs em coluna */
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; /* Espaço entre inputs */
 }
 
 input, textarea, button {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 6px; /* Cantos arredondados */
+  border: 1px solid #ccc; /* Borda cinza */
 }
 
 button {
-  background: #004080;
-  color: white;
+  background: #004080; /* Cor azul */
+  color: white; /* Texto branco */
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: 0.3s; /* Animação suave */
 }
 
 button:hover {
-  background: #0066cc;
+  background: #0066cc; /* Cor quando passa o mouse */
 }
 
 section {
-  display: none;
+  display: none; /* Esconde as seções */
 }
 
 section.active {
-  display: block;
+  display: block; /* Mostra quando ativa */
 }
 
 /* Lista de livros */
 #bookList {
-  list-style: none;
+  list-style: none; /* Remove bolinhas da lista */
   padding: 0;
 }
 
 #bookList li {
-  background: #eef3fb;
-  margin: 8px 0;
+  background: #eef3fb; /* Fundo azul claro */
+  margin: 8px 0; /* Espaço entre itens */
   padding: 10px;
   border-radius: 6px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Nome à esquerda e botões à direita */
   align-items: center;
 }
 
 #bookList div {
   display: flex;
-  gap: 5px;
+  gap: 5px; /* Espaço entre os botões */
 }
 
 #bookList button {
@@ -105,7 +105,7 @@ section.active {
 }
 
 #bookList button:nth-child(1) {
-  background: #007bff; /* Ver */
+  background: #007bff; /* Botão Ver */
 }
 
 #bookList button:nth-child(1):hover {
@@ -113,14 +113,14 @@ section.active {
 }
 
 #bookList button:nth-child(2) {
-  background: #dc3545; /* Excluir */
+  background: #dc3545; /* Botão Excluir */
 }
 
 #bookList button:nth-child(2):hover {
   background: #a71d2a;
 }
 
-/* TOASTS */
+/* TOASTS (mensagens rápidas) */
 #toast-container {
   position: fixed;
   top: 20px;
@@ -128,7 +128,7 @@ section.active {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 9999;
+  z-index: 9999; /* Sempre por cima */
 }
 
 .toast {
@@ -143,9 +143,9 @@ section.active {
   animation: slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
 }
 
-.toast.success { background-color: #28a745; }
-.toast.error { background-color: #dc3545; }
-.toast.info { background-color: #007bff; }
+.toast.success { background-color: #28a745; } /* Verde */
+.toast.error { background-color: #dc3545; } /* Vermelho */
+.toast.info { background-color: #007bff; } /* Azul */
 
 @keyframes slideIn {
   to {
@@ -163,12 +163,12 @@ section.active {
 
 /* Modal */
 .modal {
-  display: none;
+  display: none; /* Escondido por padrão */
   position: fixed;
   z-index: 10000;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.5); /* Fundo escuro */
   justify-content: center;
   align-items: center;
 }
@@ -190,5 +190,5 @@ section.active {
 }
 
 #closeModal:hover {
-  color: red;
+  color: red; /* Fica vermelho ao passar o mouse */
 }
