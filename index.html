@@ -9,7 +9,14 @@
 <body>
   <header>
     <h1>📚 Biblioteca Digital</h1>
-    <button id="logoutBtn" style="display:none;">Sair</button>
+    <nav id="menu" style="display:none;">
+      <a href="#" id="goList"> Lista de Livros</a>
+      <a href="#" id="goRegister">Cadastrar Livro</a>
+    </nav>
+    <div id="userInfo">
+      <span id="userName"></span>
+      <button id="logoutBtn" style="display:none;">Sair</button>
+    </div>
   </header>
 
   <main>
@@ -36,20 +43,29 @@
       <p>Já tem conta? <a href="#" id="showLogin">Faça login</a></p>
     </section>
 
-    <!-- Sistema (após login) -->
-    <section id="system-section">
-      <h2>Gerenciar Livros</h2>
-      <form id="bookForm">
-        <input type="text" id="title" placeholder="Título" required>
-        <input type="text" id="author" placeholder="Autor" required>
-        <input type="text" id="genre" placeholder="Gênero" required>
-        <input type="number" id="year" placeholder="Ano" required>
-        <textarea id="description" placeholder="Descrição" required></textarea>
-        <button type="submit">Adicionar Livro</button>
-      </form>
-
-      <h3>Lista de Livros</h3>
+    <!-- Lista de Livros -->
+    <section id="list-section">
+      <h2>Lista de Livros</h2>
       <ul id="bookList"></ul>
+    </section>
+
+    <!-- Cadastrar Livro -->
+    <section id="system-section">
+      <h2>Cadastrar Livro</h2>
+      <div class="card-form">
+        <form id="bookForm">
+          <input type="text" id="title" placeholder="Título" required>
+          <input type="text" id="author" placeholder="Autor" required>
+          <input type="text" id="genre" placeholder="Gênero" required>
+          <input type="number" id="year" placeholder="Ano" required>
+          <textarea id="description" placeholder="Descrição" required></textarea>
+          <input type="file" id="image" accept="image/*">
+          <button type="submit">Adicionar Livro</button>
+        </form>
+        <div class="preview-container">
+          <img id="preview" src="" alt="Preview da capa" style="display:none;">
+        </div>
+      </div>
     </section>
   </main>
 
@@ -57,19 +73,27 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="closeModal">&times;</span>
-      <h3 id="modalTitle">Detalhes do Livro</h3>
-      <form id="editForm">
+      <h3 id="modalTitle"></h3>
+      <div id="viewContent" style="display:none;">
+        <p><strong>Título:</strong> <span id="viewTitle"></span></p>
+        <p><strong>Autor:</strong> <span id="viewAuthor"></span></p>
+        <p><strong>Gênero:</strong> <span id="viewGenre"></span></p>
+        <p><strong>Ano:</strong> <span id="viewYear"></span></p>
+        <p><strong>Descrição:</strong> <span id="viewDescription"></span></p>
+        <img id="viewImage" src="" alt="Capa" style="max-width:120px; margin-top:10px;">
+      </div>
+      <form id="editForm" style="display:none;">
         <input type="text" id="editTitle" placeholder="Título" required>
         <input type="text" id="editAuthor" placeholder="Autor" required>
         <input type="text" id="editGenre" placeholder="Gênero" required>
         <input type="number" id="editYear" placeholder="Ano" required>
         <textarea id="editDescription" placeholder="Descrição" required></textarea>
+        <img id="editPreview" src="" alt="Preview da capa" style="max-width:100px; margin-top:10px;">
         <button type="submit">Salvar Alterações</button>
       </form>
     </div>
   </div>
 
-  
   <div id="toast-container"></div>
 
   <script src="script.js"></script>
