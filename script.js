@@ -1,5 +1,6 @@
 let editingBook = null;
 let currentUser = null;
+let bookToDelete = null; // livro a ser excluído
 
 // Função de toasts
 function showToast(message, type = "info") {
@@ -127,10 +128,27 @@ bookForm.addEventListener("submit", (e) => {
   document.getElementById("list-section").classList.add("active");
 });
 
+// Modal de confirmação ao excluir
 function removeBook(btn) {
-  btn.parentElement.parentElement.remove();
-  showToast("Livro removido!", "error");
+  bookToDelete = btn.parentElement.parentElement;
+  const title = bookToDelete.dataset.title;
+  document.getElementById("confirmMessage").textContent = `Você deseja realmente remover o livro "${title}"?`;
+  document.getElementById("confirmModal").style.display = "flex";
 }
+
+document.getElementById("cancelDelete").addEventListener("click", () => {
+  bookToDelete = null;
+  document.getElementById("confirmModal").style.display = "none";
+});
+
+document.getElementById("confirmDelete").addEventListener("click", () => {
+  if (bookToDelete) {
+    bookToDelete.remove();
+    showToast("Livro removido!", "error");
+    bookToDelete = null;
+  }
+  document.getElementById("confirmModal").style.display = "none";
+});
 
 // Modal de Visualizar/Editar
 const modal = document.getElementById("modal");
@@ -165,6 +183,19 @@ function editBook(btn) {
   modal.style.display = "flex";
 }
 
+// Trocar imagem no modo edição
+document.getElementById("editImage").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById("editPreview").src = reader.result;
+      editingBook.dataset.image = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
 closeModalBtn.addEventListener("click", () => { modal.style.display = "none"; });
 window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
 
@@ -177,6 +208,7 @@ editForm.addEventListener("submit", (e) => {
     editingBook.dataset.genre = document.getElementById("editGenre").value;
     editingBook.dataset.year = document.getElementById("editYear").value;
     editingBook.dataset.description = document.getElementById("editDescription").value;
+
     editingBook.querySelector(".book-info").innerHTML = `
       ${editingBook.dataset.image ? `<img src="${editingBook.dataset.image}" alt="Capa" class="book-cover">` : ""}
       <span><strong>${editingBook.dataset.title}</strong> - ${editingBook.dataset.author} (${editingBook.dataset.year}) 

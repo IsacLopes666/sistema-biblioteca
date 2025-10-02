@@ -269,3 +269,34 @@ section.active {
 #closeModal:hover {
   color: red;
 }
+
+/* Modal de confirmação */
+#confirmModal .modal-content {
+  max-width: 350px;
+  text-align: center;
+}
+
+#confirmModal button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#cancelDelete {
+  background: #6c757d;
+}
+
+#cancelDelete:hover {
+  background: #5a6268;
+}
+
+#confirmDelete {
+  background: #dc3545;
+}
+
+#confirmDelete:hover {
+  background: #a71d2a;
+}

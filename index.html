@@ -33,7 +33,7 @@
 
     <!-- Cadastro -->
     <section id="register-section">
-      <h2>Cadastro</h2>
+      <h2>Cadastro De Usuario</h2>
       <form id="registerForm">
         <input type="text" id="regName" placeholder="Nome" required>
         <input type="email" id="regEmail" placeholder="Email" required>
@@ -88,9 +88,25 @@
         <input type="text" id="editGenre" placeholder="Gênero" required>
         <input type="number" id="editYear" placeholder="Ano" required>
         <textarea id="editDescription" placeholder="Descrição" required></textarea>
+
+        <!-- NOVO CAMPO PARA EDITAR IMAGEM -->
+        <input type="file" id="editImage" accept="image/*">
+
         <img id="editPreview" src="" alt="Preview da capa" style="max-width:100px; margin-top:10px;">
         <button type="submit">Salvar Alterações</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal de confirmação -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <h3>Confirmação</h3>
+      <p id="confirmMessage">Você deseja realmente remover este livro?</p>
+      <div style="margin-top:15px; display:flex; justify-content:flex-end; gap:10px;">
+        <button id="cancelDelete" style="background:#6c757d;">Cancelar</button>
+        <button id="confirmDelete" style="background:#dc3545;">Remover</button>
+      </div>
     </div>
   </div>
 
