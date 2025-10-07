@@ -1,4 +1,4 @@
-/* ======== CONFIGURAÇÕES GERAIS ======== */
+
 body {
   font-family: Arial, sans-serif; /* Define a fonte padrão */
   margin: 0; /* Remove margens do corpo */
@@ -6,7 +6,7 @@ body {
   color: #333; /* Cor padrão do texto */
 }
 
-/* ======== CABEÇALHO ======== */
+/* CABEÇALHO  */
 header {
   background: #004080; /* Azul escuro */
   color: white; /* Texto branco */
@@ -51,7 +51,7 @@ header button:hover {
   background: #a71d2a; /* Tom mais escuro ao passar o mouse */
 }
 
-/* ======== CONTEÚDO PRINCIPAL ======== */
+/*  conteudo principal */
 main {
   max-width: 800px; /* Largura máxima do conteúdo */
   margin: 2rem auto; /* Centraliza e dá espaçamento vertical */
@@ -65,7 +65,7 @@ h2, h3 {
   color: #004080; /* Azul igual ao cabeçalho */
 }
 
-/* ======== FORMULÁRIOS ======== */
+/*  FORMULÁRIOS  */
 form {
   display: flex;
   flex-direction: column; /* Campos empilhados */
@@ -90,7 +90,7 @@ button:hover {
   background: #0066cc; /* Azul mais claro no hover */
 }
 
-/* ======== CONTROLE DE SEÇÕES ======== */
+/*  CONTROLE DE SEÇÕES  */
 section {
   display: none; /* Todas escondidas por padrão */
 }
@@ -99,7 +99,7 @@ section.active {
   display: block; /* Exibe apenas a ativa */
 }
 
-/* ======== CARD DE CADASTRO DE LIVRO ======== */
+/*  CARD DE CADASTRO DE LIVRO  */
 .card-form {
   display: flex;
   gap: 20px;
@@ -126,7 +126,7 @@ section.active {
   border-radius: 6px;
 }
 
-/* ======== LISTA DE LIVROS ======== */
+/*  LISTA DE LIVROS */
 #bookList {
   list-style: none; /* Remove bolinhas */
   padding: 0;
@@ -192,7 +192,7 @@ section.active {
   align-items: center;
 }
 
-/* ======== TOASTS (mensagens no canto) ======== */
+/*  TOASTS (mensagens no canto)  */
 #toast-container {
   position: fixed;
   top: 20px;
@@ -233,7 +233,7 @@ section.active {
   }
 }
 
-/* ======== MODAL GERAL ======== */
+/* MODAL GERAL  */
 .modal {
   display: none;
   position: fixed;
@@ -267,7 +267,7 @@ section.active {
   color: red;
 }
 
-/* ======== MODAL DE CONFIRMAÇÃO ======== */
+/*  MODAL DE CONFIRMAÇÃO  */
 #confirmModal .modal-content {
   max-width: 350px;
   text-align: center;
