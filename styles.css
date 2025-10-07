@@ -1,71 +1,75 @@
+/* ======== CONFIGURAÇÕES GERAIS ======== */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #f5f7fa;
-  color: #333;
+  font-family: Arial, sans-serif; /* Define a fonte padrão */
+  margin: 0; /* Remove margens do corpo */
+  background: #f5f7fa; /* Fundo claro e suave */
+  color: #333; /* Cor padrão do texto */
 }
 
+/* ======== CABEÇALHO ======== */
 header {
-  background: #004080;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: #004080; /* Azul escuro */
+  color: white; /* Texto branco */
+  padding: 1rem; /* Espaçamento interno */
+  display: flex; /* Alinha itens lado a lado */
+  justify-content: space-between; /* Espaça elementos nos cantos */
+  align-items: center; /* Centraliza verticalmente */
 }
 
 header nav {
-  display: flex;
-  gap: 15px;
+  display: flex; /* Itens de navegação lado a lado */
+  gap: 15px; /* Espaçamento entre os links */
 }
 
 header nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+  color: white; /* Links brancos */
+  text-decoration: none; /* Remove sublinhado */
+  font-weight: bold; /* Deixa em negrito */
 }
 
 header nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Sublinha ao passar o mouse */
 }
 
 header #userInfo {
-  display: flex;
+  display: flex; /* Ícone e nome lado a lado */
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* Espaço entre nome e botão */
 }
 
 header button {
-  background: #dc3545;
+  background: #dc3545; /* Vermelho */
   border: none;
   padding: 8px 15px;
-  border-radius: 6px;
+  border-radius: 6px; /* Bordas arredondadas */
   color: white;
   font-weight: bold;
-  cursor: pointer;
+  cursor: pointer; /* Cursor de mão */
 }
 
 header button:hover {
-  background: #a71d2a;
+  background: #a71d2a; /* Tom mais escuro ao passar o mouse */
 }
 
+/* ======== CONTEÚDO PRINCIPAL ======== */
 main {
-  max-width: 800px;
-  margin: 2rem auto;
+  max-width: 800px; /* Largura máxima do conteúdo */
+  margin: 2rem auto; /* Centraliza e dá espaçamento vertical */
   padding: 1rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background: white; /* Fundo branco para o conteúdo */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra leve */
 }
 
 h2, h3 {
-  color: #004080;
+  color: #004080; /* Azul igual ao cabeçalho */
 }
 
+/* ======== FORMULÁRIOS ======== */
 form {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: column; /* Campos empilhados */
+  gap: 10px; /* Espaçamento entre campos */
 }
 
 input, textarea, button {
@@ -75,26 +79,27 @@ input, textarea, button {
 }
 
 button {
-  background: #004080;
+  background: #004080; /* Azul padrão */
   color: white;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: 0.3s; /* Efeito suave no hover */
 }
 
 button:hover {
-  background: #0066cc;
+  background: #0066cc; /* Azul mais claro no hover */
 }
 
+/* ======== CONTROLE DE SEÇÕES ======== */
 section {
-  display: none;
+  display: none; /* Todas escondidas por padrão */
 }
 
 section.active {
-  display: block;
+  display: block; /* Exibe apenas a ativa */
 }
 
-/* Card de cadastro */
+/* ======== CARD DE CADASTRO DE LIVRO ======== */
 .card-form {
   display: flex;
   gap: 20px;
@@ -102,15 +107,15 @@ section.active {
 }
 
 .card-form form {
-  flex: 1;
+  flex: 1; /* Ocupa todo o espaço possível */
 }
 
 .preview-container {
-  flex: 0 0 200px;
+  flex: 0 0 200px; /* Caixa fixa para a imagem */
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e0e0e0;
+  background: #e0e0e0; /* Fundo cinza */
   border-radius: 8px;
   height: 250px;
 }
@@ -121,14 +126,14 @@ section.active {
   border-radius: 6px;
 }
 
-/* Lista de livros */
+/* ======== LISTA DE LIVROS ======== */
 #bookList {
-  list-style: none;
+  list-style: none; /* Remove bolinhas */
   padding: 0;
 }
 
 #bookList li {
-  background: #eef3fb;
+  background: #eef3fb; /* Fundo azul claro */
   margin: 8px 0;
   padding: 10px;
   border-radius: 6px;
@@ -139,7 +144,7 @@ section.active {
 
 #bookList div {
   display: flex;
-  gap: 5px;
+  gap: 5px; /* Espaço entre botões */
 }
 
 #bookList button {
@@ -150,27 +155,27 @@ section.active {
   color: white;
 }
 
+/* Botão Visualizar */
 #bookList button:nth-child(1) {
-  background: #007bff; /* Visualizar */
+  background: #007bff;
 }
-
 #bookList button:nth-child(1):hover {
   background: #0056b3;
 }
 
+/* Botão Atualizar */
 #bookList button:nth-child(2) {
-  background: #ffc107; /* Atualizar */
+  background: #ffc107;
   color: black;
 }
-
 #bookList button:nth-child(2):hover {
   background: #e0a800;
 }
 
+/* Botão Excluir */
 #bookList button:nth-child(3) {
-  background: #dc3545; /* Excluir */
+  background: #dc3545;
 }
-
 #bookList button:nth-child(3):hover {
   background: #a71d2a;
 }
@@ -187,7 +192,7 @@ section.active {
   align-items: center;
 }
 
-/* Toasts */
+/* ======== TOASTS (mensagens no canto) ======== */
 #toast-container {
   position: fixed;
   top: 20px;
@@ -210,17 +215,9 @@ section.active {
   animation: slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
 }
 
-.toast.success {
-  background-color: #28a745;
-}
-
-.toast.error {
-  background-color: #dc3545;
-}
-
-.toast.info {
-  background-color: #007bff;
-}
+.toast.success { background-color: #28a745; } /* Verde */
+.toast.error { background-color: #dc3545; }   /* Vermelho */
+.toast.info { background-color: #007bff; }    /* Azul */
 
 @keyframes slideIn {
   to {
@@ -236,7 +233,7 @@ section.active {
   }
 }
 
-/* Modal */
+/* ======== MODAL GERAL ======== */
 .modal {
   display: none;
   position: fixed;
@@ -259,18 +256,18 @@ section.active {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* Botão de fechar modal (X) */
 #closeModal {
   float: right;
   font-size: 20px;
   cursor: pointer;
   color: #333;
 }
-
 #closeModal:hover {
   color: red;
 }
 
-/* Modal de confirmação */
+/* ======== MODAL DE CONFIRMAÇÃO ======== */
 #confirmModal .modal-content {
   max-width: 350px;
   text-align: center;
@@ -285,18 +282,18 @@ section.active {
   cursor: pointer;
 }
 
+/* Botão cancelar exclusão */
 #cancelDelete {
   background: #6c757d;
 }
-
 #cancelDelete:hover {
   background: #5a6268;
 }
 
+/* Botão confirmar exclusão */
 #confirmDelete {
   background: #dc3545;
 }
-
 #confirmDelete:hover {
   background: #a71d2a;
 }

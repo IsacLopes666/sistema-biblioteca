@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- ======== CABEÇALHO ======== -->
+  <!--  CABEÇALHO  -->
   <header>
     <h1>📚 Biblioteca Digital</h1>
 
@@ -27,7 +27,7 @@
 
   <main>
 
-    <!-- ======== LOGIN ======== -->
+    <!--  LOGIN  -->
     <section id="login-section" class="active">
       <h2>Login</h2>
       <form id="loginForm">
@@ -38,7 +38,7 @@
       <p>Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
     </section>
 
-    <!-- ======== CADASTRO DE USUÁRIO ======== -->
+    <!--  CADASTRO DE USUÁRIO  -->
     <section id="register-section">
       <h2>Cadastro De Usuario</h2>
       <form id="registerForm">
@@ -50,13 +50,13 @@
       <p>Já tem conta? <a href="#" id="showLogin">Faça login</a></p>
     </section>
 
-    <!-- ======== LISTA DE LIVROS ======== -->
+    <!--  LISTA DE LIVROS -->
     <section id="list-section">
       <h2>Lista de Livros</h2>
       <ul id="bookList"></ul>
     </section>
 
-    <!-- ======== CADASTRAR LIVRO ======== -->
+    <!--  CADASTRAR LIVRO -->
     <section id="system-section">
       <h2>Cadastrar Livro</h2>
       <div class="card-form">
@@ -181,7 +181,7 @@
     }
   });
 
-  //  Sair Da Conta 
+  //  SAIR 
   document.getElementById("logoutBtn").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("login-section").classList.add("active");
