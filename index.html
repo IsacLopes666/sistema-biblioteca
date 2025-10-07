@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- ======== CABEÇALHO ======== -->
   <header>
     <h1>📚 Biblioteca Digital</h1>
+
+    <!-- Menu escondido até o login -->
     <nav id="menu" style="display:none;">
       <a href="#" id="goList"> Lista de Livros</a>
       <a href="#" id="goRegister">Cadastrar Livro</a>
     </nav>
+
+    <!-- Mostra nome do usuário logado e botão sair -->
     <div id="userInfo">
       <span id="userName"></span>
       <button id="logoutBtn" style="display:none;">Sair da Conta</button>
@@ -20,7 +26,8 @@
   </header>
 
   <main>
-    <!-- Login -->
+
+    <!-- ======== LOGIN ======== -->
     <section id="login-section" class="active">
       <h2>Login</h2>
       <form id="loginForm">
@@ -31,7 +38,7 @@
       <p>Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
     </section>
 
-    <!-- Cadastro -->
+    <!-- ======== CADASTRO DE USUÁRIO ======== -->
     <section id="register-section">
       <h2>Cadastro De Usuario</h2>
       <form id="registerForm">
@@ -43,13 +50,13 @@
       <p>Já tem conta? <a href="#" id="showLogin">Faça login</a></p>
     </section>
 
-    <!-- Lista de Livros -->
+    <!-- ======== LISTA DE LIVROS ======== -->
     <section id="list-section">
       <h2>Lista de Livros</h2>
       <ul id="bookList"></ul>
     </section>
 
-    <!-- Cadastrar Livro -->
+    <!-- ======== CADASTRAR LIVRO ======== -->
     <section id="system-section">
       <h2>Cadastrar Livro</h2>
       <div class="card-form">
@@ -62,6 +69,8 @@
           <input type="file" id="image" accept="image/*">
           <button type="submit">Adicionar Livro</button>
         </form>
+
+        <!-- Preview da imagem do livro -->
         <div class="preview-container">
           <img id="preview" src="" alt="Preview da capa" style="display:none;">
         </div>
@@ -69,11 +78,13 @@
     </section>
   </main>
 
-  <!-- Modal para visualizar/editar -->
+  <!-- ======== MODAL DE VISUALIZAR/EDITAR ======== -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="closeModal">&times;</span>
       <h3 id="modalTitle"></h3>
+
+      <!-- Exibe detalhes -->
       <div id="viewContent" style="display:none;">
         <p><strong>Título:</strong> <span id="viewTitle"></span></p>
         <p><strong>Autor:</strong> <span id="viewAuthor"></span></p>
@@ -82,23 +93,22 @@
         <p><strong>Descrição:</strong> <span id="viewDescription"></span></p>
         <img id="viewImage" src="" alt="Capa" style="max-width:120px; margin-top:10px;">
       </div>
+
+      <!-- Formulário para editar livro -->
       <form id="editForm" style="display:none;">
         <input type="text" id="editTitle" placeholder="Título" required>
         <input type="text" id="editAuthor" placeholder="Autor" required>
         <input type="text" id="editGenre" placeholder="Gênero" required>
         <input type="number" id="editYear" placeholder="Ano" required>
         <textarea id="editDescription" placeholder="Descrição" required></textarea>
-
-        <!-- NOVO CAMPO PARA EDITAR IMAGEM -->
         <input type="file" id="editImage" accept="image/*">
-
         <img id="editPreview" src="" alt="Preview da capa" style="max-width:100px; margin-top:10px;">
         <button type="submit">Salvar Alterações</button>
       </form>
     </div>
   </div>
 
-  <!-- Modal de confirmação -->
+  <!-- ======== MODAL DE CONFIRMAÇÃO ======== -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <h3>Confirmação</h3>
@@ -110,23 +120,27 @@
     </div>
   </div>
 
+  <!-- Container das mensagens de notificação -->
   <div id="toast-container"></div>
 
-  <!-- 🔽 SCRIPT COMPLETO INCORPORADO -->
+  <!-- ======== SCRIPT PRINCIPAL ======== -->
   <script>
-  let editingBook = null;
-  let currentUser = null;
-  let bookToDelete = null;
+  // ------------------ VARIÁVEIS GERAIS ------------------
+  let editingBook = null;     // guarda qual livro está sendo editado
+  let currentUser = null;     // guarda o usuário logado
+  let bookToDelete = null;    // guarda o livro que será excluído
 
+  // ------------------ TOASTS (mensagens de alerta) ------------------
   function showToast(message, type = "info") {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
     toast.classList.add("toast", type);
     toast.textContent = message;
     container.appendChild(toast);
-    setTimeout(() => toast.remove(), 4000);
+    setTimeout(() => toast.remove(), 4000); // desaparece em 4 segundos
   }
 
+  //  TROCAR ENTRE LOGIN E CADASTRO 
   document.getElementById("showRegister").addEventListener("click", () => {
     document.getElementById("login-section").classList.remove("active");
     document.getElementById("register-section").classList.add("active");
@@ -136,22 +150,24 @@
     document.getElementById("login-section").classList.add("active");
   });
 
+  //  CADASTRAR USUÁRIO
   document.getElementById("registerForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const name = document.getElementById("regName").value;
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
-    localStorage.setItem("user", JSON.stringify({ name, email, password }));
+    localStorage.setItem("user", JSON.stringify({ name, email, password })); // salva no navegador
     showToast("Cadastro realizado com sucesso! Faça login.", "success");
     document.getElementById("register-section").classList.remove("active");
     document.getElementById("login-section").classList.add("active");
   });
 
+  //  LOGIN 
   document.getElementById("loginForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user")); // pega usuário salvo
     if (user && user.email === email && user.password === password) {
       currentUser = user;
       showToast("Login realizado com sucesso!", "success");
@@ -165,6 +181,7 @@
     }
   });
 
+  //  Sair Da Conta 
   document.getElementById("logoutBtn").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("login-section").classList.add("active");
@@ -175,6 +192,7 @@
     showToast("Você saiu da conta.", "info");
   });
 
+  //  NAVEGAÇÃO ENTRE TELAS 
   document.getElementById("goList").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("list-section").classList.add("active");
@@ -184,10 +202,12 @@
     document.getElementById("system-section").classList.add("active");
   });
 
+  // CADASTRAR LIVRO 
   const bookForm = document.getElementById("bookForm");
   const bookList = document.getElementById("bookList");
   const preview = document.getElementById("preview");
 
+  // Mostra a imagem antes de adicionar
   document.getElementById("image").addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -200,6 +220,7 @@
     }
   });
 
+  // Adiciona o livro à lista
   bookForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const title = document.getElementById("title").value;
@@ -209,6 +230,7 @@
     const description = document.getElementById("description").value;
     const image = preview.src || "";
 
+    // Cria o item da lista
     const li = document.createElement("li");
     li.innerHTML = `
       <div class="book-info">
@@ -237,6 +259,7 @@
     document.getElementById("list-section").classList.add("active");
   });
 
+  // EXCLUIR LIVRO 
   function removeBook(btn) {
     bookToDelete = btn.parentElement.parentElement;
     const title = bookToDelete.dataset.title;
@@ -258,6 +281,7 @@
     document.getElementById("confirmModal").style.display = "none";
   });
 
+  //  VISUALIZAR E EDITAR LIVROS 
   const modal = document.getElementById("modal");
   const closeModalBtn = document.getElementById("closeModal");
   const editForm = document.getElementById("editForm");
@@ -290,6 +314,7 @@
     modal.style.display = "flex";
   }
 
+  // Atualiza imagem no modo edição
   document.getElementById("editImage").addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -302,9 +327,11 @@
     }
   });
 
+  // Fechar modal
   closeModalBtn.addEventListener("click", () => { modal.style.display = "none"; });
   window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
 
+  // Salvar edição
   editForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (editingBook) {
