@@ -27,7 +27,7 @@
 
   <main>
 
-    <!--  LOGIN  -->
+    <!--  Login  -->
     <section id="login-section" class="active">
       <h2>Login</h2>
       <form id="loginForm">
@@ -38,7 +38,7 @@
       <p>Não tem conta? <a href="#" id="showRegister">Cadastre-se</a></p>
     </section>
 
-    <!--  CADASTRO DE USUÁRIO  -->
+    <!--  Cadastro De Usuario  -->
     <section id="register-section">
       <h2>Cadastro De Usuario</h2>
       <form id="registerForm">
@@ -50,13 +50,13 @@
       <p>Já tem conta? <a href="#" id="showLogin">Faça login</a></p>
     </section>
 
-    <!--  LISTA DE LIVROS -->
+    <!--  Lista De Livros -->
     <section id="list-section">
       <h2>Lista de Livros</h2>
       <ul id="bookList"></ul>
     </section>
 
-    <!--  CADASTRAR LIVRO -->
+    <!--  Cadastrar Livro -->
     <section id="system-section">
       <h2>Cadastrar Livro</h2>
       <div class="card-form">
@@ -70,7 +70,7 @@
           <button type="submit">Adicionar Livro</button>
         </form>
 
-        <!-- Preview da imagem do livro -->
+        <!--  imagem do livro -->
         <div class="preview-container">
           <img id="preview" src="" alt="Preview da capa" style="display:none;">
         </div>
@@ -78,7 +78,7 @@
     </section>
   </main>
 
-  <!-- ======== MODAL DE VISUALIZAR/EDITAR ======== -->
+  <!--  Modal de Visualizar/Editar  -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="closeModal">&times;</span>
@@ -108,7 +108,7 @@
     </div>
   </div>
 
-  <!-- ======== MODAL DE CONFIRMAÇÃO ======== -->
+  <!--  Modal de Confirmação se eu realmente desejo remover o livro  -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <h3>Confirmação</h3>
@@ -123,21 +123,21 @@
   <!-- Container das mensagens de notificação -->
   <div id="toast-container"></div>
 
-  <!-- ======== SCRIPT PRINCIPAL ======== -->
+  <!--  SCRIPT PRINCIPAL  -->
   <script>
-  // ------------------ VARIÁVEIS GERAIS ------------------
-  let editingBook = null;     // guarda qual livro está sendo editado
-  let currentUser = null;     // guarda o usuário logado
-  let bookToDelete = null;    // guarda o livro que será excluído
+  //  VARIÁVEIS GERAIS 
+  let editingBook = null;     // guarda qual livro esta sendo editado
+  let currentUser = null;     // guarda o usuario logado
+  let bookToDelete = null;    // guarda o livro que sera excluido
 
-  // ------------------ TOASTS (mensagens de alerta) ------------------
+  //  TOASTS (mensagens de alerta) 
   function showToast(message, type = "info") {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
     toast.classList.add("toast", type);
     toast.textContent = message;
     container.appendChild(toast);
-    setTimeout(() => toast.remove(), 4000); // desaparece em 4 segundos
+    setTimeout(() => toast.remove(), 4000); 
   }
 
   //  TROCAR ENTRE LOGIN E CADASTRO 
@@ -150,7 +150,7 @@
     document.getElementById("login-section").classList.add("active");
   });
 
-  //  CADASTRAR USUÁRIO
+  //  Cadastrar Usuario
   document.getElementById("registerForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const name = document.getElementById("regName").value;
@@ -162,7 +162,7 @@
     document.getElementById("login-section").classList.add("active");
   });
 
-  //  LOGIN 
+  //  Login
   document.getElementById("loginForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
@@ -181,7 +181,7 @@
     }
   });
 
-  //  SAIR 
+  //  Sair Da conta
   document.getElementById("logoutBtn").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("login-section").classList.add("active");
@@ -202,7 +202,7 @@
     document.getElementById("system-section").classList.add("active");
   });
 
-  // CADASTRAR LIVRO 
+  // Cadastrar Livro 
   const bookForm = document.getElementById("bookForm");
   const bookList = document.getElementById("bookList");
   const preview = document.getElementById("preview");
@@ -259,7 +259,7 @@
     document.getElementById("list-section").classList.add("active");
   });
 
-  // EXCLUIR LIVRO 
+  // Se eu realmente desejo excluir o livro 
   function removeBook(btn) {
     bookToDelete = btn.parentElement.parentElement;
     const title = bookToDelete.dataset.title;
@@ -314,7 +314,7 @@
     modal.style.display = "flex";
   }
 
-  // Atualiza imagem no modo edição
+  // Atualiza imagem no modo edição 
   document.getElementById("editImage").addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
