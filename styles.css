@@ -47,6 +47,7 @@ header button {
   cursor: pointer; /* Cursor de mão */
 }
 
+
 header button:hover {
   background: #a71d2a; 
 }
