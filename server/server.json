@@ -1,142 +1,154 @@
 {
-    "usuarios": [
+  "usuarios": [
     {
-        "id": "1",
-        "nome": "isac",
-        "email": "isaclopesh@hotmail.com",
-        "senha": "9090"
+      "id": "1",
+      "nome": "isac",
+      "email": "isaclopesh@hotmail.com",
+      "senha": "9090"
     },
     {
-        "id": "2",
-        "nome": "samuel",
-        "email": "samuel@hotmail.com",
-        "senha": "4040"
+      "id": "2",
+      "nome": "samuel",
+      "email": "samuel@hotmail.com",
+      "senha": "4040"
     },
     {
-        "id": "3",
-        "nome": "carlos",
-        "email": "carlos@hotmail.com",
-        "senha": "1234"
+      "id": "3",
+      "nome": "carlos",
+      "email": "carlos@hotmail.com",
+      "senha": "1234"
     },
     {
-        "id": "4",
-        "nome": "gabi",
-        "email": "gabi@hotmail.com",
-        "senha": "9876"
+      "id": "4",
+      "nome": "gabi",
+      "email": "gabi@hotmail.com",
+      "senha": "9876"
     },
     {
-        "id": "5",
-        "nome": "manu",
-        "email": "manu@hotmail.com",
-        "senha": "4848"
+      "id": "5",
+      "nome": "manu",
+      "email": "manu@hotmail.com",
+      "senha": "4848"
+    },
+    {
+      "id": "6",
+      "nome": "matheus",
+      "email": "matheus@hotmail.com",
+      "senha": "1974"
     }
-    ],
-    "livros": [
-        {
-          "id": "101",
-          "nome": "O Eco das Sombras",
-          "descricao": "Um detetive atormentado precisa resolver o assassinato que o conecta ao seu próprio passado sombrio.",
-          "genero": "Suspense Policial",
-          "imagemUrl": "https://example.com/o-eco-das-sombras.jpg"
-        },
-        {
-          "id": "102",
-          "nome": "O Jardim de Cinzas",
-          "descricao": "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
-          "genero": "Ficção Pós-apocalíptica",
-          "imagemUrl": "https://example.com/o-jardim-de-cinzas.jpg"
-        },
-        {
-          "id": "103",
-          "nome": "O Último Voo do Corvo",
-          "descricao": "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
-          "genero": "Drama Histórico",
-          "imagemUrl": "https://example.com/o-ultimo-voo-do-corvo.jpg"
-        },
-        {
-          "id": "104",
-          "nome": "Fragmentos do Amanhã",
-          "descricao": "Cientistas descobrem uma forma de prever o futuro — e o preço é a própria sanidade.",
-          "genero": "Ficção Científica",
-          "imagemUrl": "https://example.com/fragmentos-do-amanha.jpg"
-        },
-        {
-          "id": "105",
-          "nome": "Entre Luzes e Pecados",
-          "descricao": "Uma atriz em ascensão esconde um crime enquanto tenta manter a fama.",
-          "genero": "Drama Psicológico",
-          "imagemUrl": "https://example.com/entre-luzes-e-pecados.jpg"
-        },
-        {
-          "id": "106",
-          "nome": "A Canção do Mar Esquecido",
-          "descricao": "Um pescador descobre uma sereia ferida e vê seu destino mudar para sempre.",
-          "genero": "Fantasia Romântica",
-          "imagemUrl": "https://example.com/a-cancao-do-mar-esquecido.jpg"
-        },
-        {
-          "id": "107",
-          "nome": "Cidade de Vidro Partido",
-          "descricao": "Em uma metrópole futurista, um hacker busca vingança contra o sistema que destruiu sua vida.",
-          "genero": "Cyberpunk",
-          "imagemUrl": "https://example.com/cidade-de-vidro-partido.jpg"
-        },
-        {
-          "id": "108",
-          "nome": "Os Ventos do Norte",
-          "descricao": "Exploradores enfrentam monstros e tempestades em busca de uma terra lendária.",
-          "genero": "Aventura Épica",
-          "imagemUrl": "https://example.com/os-ventos-do-norte.jpg"
-        },
-        {
-          "id": "109",
-          "nome": "Silêncio nas Estrelas",
-          "descricao": "Após um desastre espacial, a única sobrevivente luta para retornar à Terra.",
-          "genero": "Ficção Científica",
-          "imagemUrl": "https://example.com/silencio-nas-estrelas.jpg"
-        },
-        {
-          "id": "110",
-          "nome": "A Casa das Mariposas",
-          "descricao": "Uma mansão antiga esconde segredos sobre a morte misteriosa de uma família inteira.",
-          "genero": "Terror Gótico",
-          "imagemUrl": "https://example.com/a-casa-das-mariposas.jpg"
-        },
-        {
-          "id": "111",
-          "nome": "O Círculo das Chamas",
-          "descricao": "Cinco jovens descobrem que possuem poderes ligados aos elementos e precisam impedir o fim do mundo.",
-          "genero": "Fantasia Juvenil",
-          "imagemUrl": "https://example.com/o-circulo-das-chamas.jpg"
-        },
-        {
-          "id": "112",
-          "nome": "Além da Névoa",
-          "descricao": "Um homem acorda em uma cidade cercada por névoa, sem lembrar quem é.",
-          "genero": "Mistério",
-          "imagemUrl": "https://example.com/alem-da-nevoa.jpg"
-        },
-        {
-          "id": "113",
-          "nome": "O Pintor e a Lua",
-          "descricao": "Um artista encontra inspiração em um amor impossível e pinta um quadro que muda o destino dos dois.",
-          "genero": "Romance Contemporâneo",
-          "imagemUrl": "https://example.com/o-pintor-e-a-lua.jpg"
-        },
-        {
-          "id": "114",
-          "nome": "O Guardião do Relógio",
-          "descricao": "Um relojoeiro descobre um artefato capaz de controlar o tempo.",
-          "genero": "Fantasia/Aventura",
-          "imagemUrl": "https://example.com/o-guardiao-do-relogio.jpg"
-        },
-        {
-          "id": "115",
-          "nome": "As Vozes do Subsolo",
-          "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
-          "genero": "Ficção Científica / Aventura",
-          "imagemUrl": "https://example.com/as-vozes-do-subsolo.jpg"
-        }
-      ]
-      
+  ],
+  "livros": [
+    {
+      "id": "101",
+      "nome": "O Eco das Sombras",
+      "descricao": "Um detetive atormentado precisa resolver o assassinato que o conecta ao seu próprio passado sombrio.",
+      "genero": "Suspense Policial",
+      "imagemUrl": "https://example.com/o-eco-das-sombras.jpg"
+    },
+    {
+      "id": "102",
+      "nome": "O Jardim de Cinzas",
+      "descricao": "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
+      "genero": "Ficção Pós-apocalíptica",
+      "imagemUrl": "https://example.com/o-jardim-de-cinzas.jpg"
+    },
+    {
+      "id": "103",
+      "nome": "O Último Voo do Corvo",
+      "descricao": "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
+      "genero": "Drama Histórico",
+      "imagemUrl": "https://example.com/o-ultimo-voo-do-corvo.jpg"
+    },
+    {
+      "id": "104",
+      "nome": "Fragmentos do Amanhã",
+      "descricao": "Cientistas descobrem uma forma de prever o futuro — e o preço é a própria sanidade.",
+      "genero": "Ficção Científica",
+      "imagemUrl": "https://example.com/fragmentos-do-amanha.jpg"
+    },
+    {
+      "id": "105",
+      "nome": "Entre Luzes e Pecados",
+      "descricao": "Uma atriz em ascensão esconde um crime enquanto tenta manter a fama.",
+      "genero": "Drama Psicológico",
+      "imagemUrl": "https://example.com/entre-luzes-e-pecados.jpg"
+    },
+    {
+      "id": "106",
+      "nome": "A Canção do Mar Esquecido",
+      "descricao": "Um pescador descobre uma sereia ferida e vê seu destino mudar para sempre.",
+      "genero": "Fantasia Romântica",
+      "imagemUrl": "https://example.com/a-cancao-do-mar-esquecido.jpg"
+    },
+    {
+      "id": "107",
+      "nome": "Cidade de Vidro Partido",
+      "descricao": "Em uma metrópole futurista, um hacker busca vingança contra o sistema que destruiu sua vida.",
+      "genero": "Cyberpunk",
+      "imagemUrl": "https://example.com/cidade-de-vidro-partido.jpg"
+    },
+    {
+      "id": "108",
+      "nome": "Os Ventos do Norte",
+      "descricao": "Exploradores enfrentam monstros e tempestades em busca de uma terra lendária.",
+      "genero": "Aventura Épica",
+      "imagemUrl": "https://example.com/os-ventos-do-norte.jpg"
+    },
+    {
+      "id": "109",
+      "nome": "Silêncio nas Estrelas",
+      "descricao": "Após um desastre espacial, a única sobrevivente luta para retornar à Terra.",
+      "genero": "Ficção Científica",
+      "imagemUrl": "https://example.com/silencio-nas-estrelas.jpg"
+    },
+    {
+      "id": "110",
+      "nome": "A Casa das Mariposas",
+      "descricao": "Uma mansão antiga esconde segredos sobre a morte misteriosa de uma família inteira.",
+      "genero": "Terror Gótico",
+      "imagemUrl": "https://example.com/a-casa-das-mariposas.jpg"
+    },
+    {
+      "id": "111",
+      "nome": "O Círculo das Chamas",
+      "descricao": "Cinco jovens descobrem que possuem poderes ligados aos elementos e precisam impedir o fim do mundo.",
+      "genero": "Fantasia Juvenil",
+      "imagemUrl": "https://example.com/o-circulo-das-chamas.jpg"
+    },
+    {
+      "id": "112",
+      "nome": "Além da Névoa",
+      "descricao": "Um homem acorda em uma cidade cercada por névoa, sem lembrar quem é.",
+      "genero": "Mistério",
+      "imagemUrl": "https://example.com/alem-da-nevoa.jpg"
+    },
+    {
+      "id": "113",
+      "nome": "O Pintor e a Lua",
+      "descricao": "Um artista encontra inspiração em um amor impossível e pinta um quadro que muda o destino dos dois.",
+      "genero": "Romance Contemporâneo",
+      "imagemUrl": "https://example.com/o-pintor-e-a-lua.jpg"
+    },
+    {
+      "id": "114",
+      "nome": "O Guardião do Relógio",
+      "descricao": "Um relojoeiro descobre um artefato capaz de controlar o tempo.",
+      "genero": "Fantasia/Aventura",
+      "imagemUrl": "https://example.com/o-guardiao-do-relogio.jpg"
+    },
+    {
+      "id": "115",
+      "nome": "As Vozes do Subsolo",
+      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "genero": "Ficção Científica / Aventura",
+      "imagemUrl": "https://example.com/as-vozes-do-subsolo.jpg"
+    },
+    {
+      "id": "116",
+      "nome": "A Volta Dos que nao foram",
+      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "genero": "Ficção Científica / Aventura",
+      "imagemUrl": "https://example.com/a-volta-dos-que-nao-foram.jpg"
+    }
+  ]
 }
