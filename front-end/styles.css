@@ -298,3 +298,13 @@ section.active {
 #confirmDelete:hover {
   background: #a71d2a;
 }
+ /* Estilos básicos para os ícones */
+ #menu a i {
+      margin-right: 8px;
+    }
+    
+    #menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
