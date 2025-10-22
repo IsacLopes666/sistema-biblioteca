@@ -11,14 +11,10 @@
   <!--  CABEÇALHO  -->
   <header>
     <h1>📚 Biblioteca Digital</h1>
-
-    <!-- Menu escondido até o login -->
     <nav id="menu" style="display:none;">
       <a href="#" id="goList"> Lista de Livros</a>
       <a href="#" id="goRegister">Cadastrar Livro</a>
     </nav>
-
-    <!-- Mostra nome do usuário logado e botão sair -->
     <div id="userInfo">
       <span id="userName"></span>
       <button id="logoutBtn" style="display:none;">Sair da Conta</button>
@@ -26,7 +22,6 @@
   </header>
 
   <main>
-
     <!--  Login  -->
     <section id="login-section" class="active">
       <h2>Login</h2>
@@ -69,8 +64,6 @@
           <input type="file" id="image" accept="image/*">
           <button type="submit">Adicionar Livro</button>
         </form>
-
-        <!--  imagem do livro -->
         <div class="preview-container">
           <img id="preview" src="" alt="Preview da capa" style="display:none;">
         </div>
@@ -83,8 +76,6 @@
     <div class="modal-content">
       <span id="closeModal">&times;</span>
       <h3 id="modalTitle"></h3>
-
-      <!-- Exibe detalhes -->
       <div id="viewContent" style="display:none;">
         <p><strong>Título:</strong> <span id="viewTitle"></span></p>
         <p><strong>Autor:</strong> <span id="viewAuthor"></span></p>
@@ -93,8 +84,6 @@
         <p><strong>Descrição:</strong> <span id="viewDescription"></span></p>
         <img id="viewImage" src="" alt="Capa" style="max-width:120px; margin-top:10px;">
       </div>
-
-      <!-- Formulário para editar livro -->
       <form id="editForm" style="display:none;">
         <input type="text" id="editTitle" placeholder="Título" required>
         <input type="text" id="editAuthor" placeholder="Autor" required>
@@ -108,7 +97,7 @@
     </div>
   </div>
 
-  <!--  Modal de Confirmação se eu realmente desejo remover o livro  -->
+  <!--  Modal de Confirmação  -->
   <div id="confirmModal" class="modal">
     <div class="modal-content">
       <h3>Confirmação</h3>
@@ -120,27 +109,24 @@
     </div>
   </div>
 
-  <!-- Container das mensagens de notificação -->
   <div id="toast-container"></div>
 
-  <!--  SCRIPT PRINCIPAL  -->
   <script>
-  //  VARIÁVEIS GERAIS 
-  let editingBook = null;     // guarda qual livro esta sendo editado
-  let currentUser = null;     // guarda o usuario logado
-  let bookToDelete = null;    // guarda o livro que sera excluido
+  const API_URL = "http://localhost:3000";
+  let currentUser = null;
+  let editingBook = null;
+  let bookToDelete = null;
 
-  //  TOASTS (mensagens de alerta) 
   function showToast(message, type = "info") {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
     toast.classList.add("toast", type);
     toast.textContent = message;
     container.appendChild(toast);
-    setTimeout(() => toast.remove(), 4000); 
+    setTimeout(() => toast.remove(), 4000);
   }
 
-  //  TROCAR ENTRE LOGIN E CADASTRO 
+  // Troca entre login e cadastro
   document.getElementById("showRegister").addEventListener("click", () => {
     document.getElementById("login-section").classList.remove("active");
     document.getElementById("register-section").classList.add("active");
@@ -150,38 +136,100 @@
     document.getElementById("login-section").classList.add("active");
   });
 
-  //  Cadastrar Usuario
-  document.getElementById("registerForm").addEventListener("submit", (e) => {
+  // Cadastro de usuário
+  document.getElementById("registerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("regName").value;
     const email = document.getElementById("regEmail").value;
     const password = document.getElementById("regPassword").value;
-    localStorage.setItem("user", JSON.stringify({ name, email, password })); // salva no navegador
+
+    // Verifica se usuário já existe
+    const usersRes = await fetch(`${API_URL}/usuarios`);
+    const users = await usersRes.json();
+    const userExists = users.find(u => u.email === email);
+    
+    if (userExists) {
+      showToast("Este email já está cadastrado!", "error");
+      return;
+    }
+
+    // Cadastra o usuário
+    await fetch(`${API_URL}/usuarios`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        nome: name, 
+        email, 
+        senha: password 
+      }),
+    });
+
+    // Verifica se precisa adicionar livros de exemplo
+    const booksRes = await fetch(`${API_URL}/livros`);
+    const livros = await booksRes.json();
+    
+    if (livros.length === 0) {
+      // Adiciona alguns livros de exemplo do meu que tentei fazer puxando do json
+      const exemplos = [
+        {
+          nome: "O Eco das Sombras",
+          descricao: "Um detetive atormentado precisa resolver o assassinato que o conecta ao seu próprio passado sombrio.",
+          genero: "Suspense Policial",
+          imagemUrl: "https://example.com/o-eco-das-sombras.jpg"
+        },
+        {
+          nome: "O Jardim de Cinzas",
+          descricao: "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
+          genero: "Ficção Pós-apocalíptica", 
+          imagemUrl: "https://example.com/o-jardim-de-cinzas.jpg"
+        },
+        {
+          nome: "O Último Voo do Corvo",
+          descricao: "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
+          genero: "Drama Histórico",
+          imagemUrl: "https://example.com/o-ultimo-voo-do-corvo.jpg"
+        }
+      ];
+      
+      for (const livro of exemplos) {
+        await fetch(`${API_URL}/livros`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(livro)
+        });
+      }
+    }
+
     showToast("Cadastro realizado com sucesso! Faça login.", "success");
     document.getElementById("register-section").classList.remove("active");
     document.getElementById("login-section").classList.add("active");
   });
 
-  //  Login
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
+  // Login
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    const user = JSON.parse(localStorage.getItem("user")); // pega usuário salvo
-    if (user && user.email === email && user.password === password) {
+    const senha = document.getElementById("loginPassword").value;
+
+    const res = await fetch(`${API_URL}/usuarios`);
+    const users = await res.json();
+    const user = users.find(u => u.email === email && u.senha === senha);
+
+    if (user) {
       currentUser = user;
       showToast("Login realizado com sucesso!", "success");
-      document.getElementById("userName").textContent = "👤 " + user.name;
+      document.getElementById("userName").textContent = "👤 " + user.nome;
       document.getElementById("login-section").classList.remove("active");
       document.getElementById("list-section").classList.add("active");
       document.getElementById("logoutBtn").style.display = "inline-block";
       document.getElementById("menu").style.display = "flex";
+      loadBooks();
     } else {
       showToast("Email ou senha incorretos.", "error");
     }
   });
 
-  //  Sair Da conta
+  // Sair da conta
   document.getElementById("logoutBtn").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("login-section").classList.add("active");
@@ -192,22 +240,81 @@
     showToast("Você saiu da conta.", "info");
   });
 
-  //  NAVEGAÇÃO ENTRE TELAS 
+  // Navegação
   document.getElementById("goList").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("list-section").classList.add("active");
+    loadBooks();
   });
   document.getElementById("goRegister").addEventListener("click", () => {
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("system-section").classList.add("active");
   });
 
-  // Cadastrar Livro 
+  // Carrega livros
+  async function loadBooks() {
+    const res = await fetch(`${API_URL}/livros`);
+    const livros = await res.json();
+    const list = document.getElementById("bookList");
+    list.innerHTML = "";
+    
+    livros.forEach(livro => {
+      const li = document.createElement("li");
+      li.dataset.id = livro.id;
+      li.innerHTML = `
+        <div class="book-info">
+          ${livro.imagemUrl ? `<img src="${livro.imagemUrl}" alt="Capa" class="book-cover">` : ""}
+          <span><strong>${livro.nome}</strong> <br><em>${livro.genero}</em></span>
+        </div>
+        <div>
+          <button onclick="viewBook('${livro.id}')">👁 Visualizar</button>
+          <button onclick="editBook('${livro.id}')">✏️ Atualizar</button>
+          <button onclick="removeBook('${livro.id}')">🗑 Excluir</button>
+        </div>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  // Visualizar livro
+  async function viewBook(bookId) {
+    const res = await fetch(`${API_URL}/livros/${bookId}`);
+    const livro = await res.json();
+    
+    document.getElementById("modalTitle").textContent = "Detalhes do Livro";
+    document.getElementById("viewTitle").textContent = livro.nome;
+    document.getElementById("viewAuthor").textContent = livro.autor || "Não informado";
+    document.getElementById("viewGenre").textContent = livro.genero;
+    document.getElementById("viewYear").textContent = livro.ano || "Não informado";
+    document.getElementById("viewDescription").textContent = livro.descricao;
+    document.getElementById("viewImage").src = livro.imagemUrl || "";
+    document.getElementById("viewContent").style.display = "block";
+    document.getElementById("editForm").style.display = "none";
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  // Editar livro
+  async function editBook(bookId) {
+    const res = await fetch(`${API_URL}/livros/${bookId}`);
+    const livro = await res.json();
+    
+    editingBook = livro;
+    document.getElementById("modalTitle").textContent = "Editar Livro";
+    document.getElementById("editTitle").value = livro.nome;
+    document.getElementById("editAuthor").value = livro.autor || "";
+    document.getElementById("editGenre").value = livro.genero;
+    document.getElementById("editYear").value = livro.ano || "";
+    document.getElementById("editDescription").value = livro.descricao;
+    document.getElementById("editPreview").src = livro.imagemUrl || "";
+    document.getElementById("viewContent").style.display = "none";
+    document.getElementById("editForm").style.display = "block";
+    document.getElementById("modal").style.display = "flex";
+  }
+
+  // Cadastrar livro
   const bookForm = document.getElementById("bookForm");
-  const bookList = document.getElementById("bookList");
   const preview = document.getElementById("preview");
 
-  // Mostra a imagem antes de adicionar
   document.getElementById("image").addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -220,36 +327,27 @@
     }
   });
 
-  // Adiciona o livro à lista
-  bookForm.addEventListener("submit", (e) => {
+  bookForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const genre = document.getElementById("genre").value;
-    const year = document.getElementById("year").value;
-    const description = document.getElementById("description").value;
-    const image = preview.src || "";
+    const nome = document.getElementById("title").value;
+    const autor = document.getElementById("author").value;
+    const genero = document.getElementById("genre").value;
+    const ano = document.getElementById("year").value;
+    const descricao = document.getElementById("description").value;
+    const imagemUrl = preview.src || "";
 
-    // Cria o item da lista
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <div class="book-info">
-        ${image ? `<img src="${image}" alt="Capa" class="book-cover">` : ""}
-        <span><strong>${title}</strong> - ${author} (${year}) <br><em>${genre}</em></span>
-      </div>
-      <div>
-        <button onclick="viewBook(this)">👁 Visualizar</button>
-        <button onclick="editBook(this)">✏️ Atualizar</button>
-        <button onclick="removeBook(this)">🗑 Excluir</button>
-      </div>
-    `;
-    li.dataset.title = title;
-    li.dataset.author = author;
-    li.dataset.genre = genre;
-    li.dataset.year = year;
-    li.dataset.description = description;
-    li.dataset.image = image;
-    bookList.appendChild(li);
+    await fetch(`${API_URL}/livros`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        nome, 
+        autor, 
+        genero, 
+        ano, 
+        descricao, 
+        imagemUrl 
+      }),
+    });
 
     bookForm.reset();
     preview.src = "";
@@ -257,13 +355,53 @@
     showToast("Livro adicionado com sucesso!", "success");
     document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("list-section").classList.add("active");
+    loadBooks();
   });
 
-  // Se eu realmente desejo excluir o livro 
-  function removeBook(btn) {
-    bookToDelete = btn.parentElement.parentElement;
-    const title = bookToDelete.dataset.title;
-    document.getElementById("confirmMessage").textContent = `Você deseja realmente remover o livro "${title}"?`;
+  // Atualizar imagem na edição
+  document.getElementById("editImage").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById("editPreview").src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Salvar edição
+  document.getElementById("editForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (editingBook) {
+      const livroAtualizado = {
+        nome: document.getElementById("editTitle").value,
+        autor: document.getElementById("editAuthor").value,
+        genero: document.getElementById("editGenre").value,
+        ano: document.getElementById("editYear").value,
+        descricao: document.getElementById("editDescription").value,
+        imagemUrl: document.getElementById("editPreview").src || editingBook.imagemUrl
+      };
+
+      await fetch(`${API_URL}/livros/${editingBook.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(livroAtualizado)
+      });
+
+      showToast("Livro atualizado com sucesso!", "success");
+      document.getElementById("modal").style.display = "none";
+      loadBooks();
+    }
+  });
+
+  // Remover livro
+  async function removeBook(bookId) {
+    bookToDelete = bookId;
+    const res = await fetch(`${API_URL}/livros/${bookId}`);
+    const livro = await res.json();
+    
+    document.getElementById("confirmMessage").textContent = `Você deseja realmente remover o livro "${livro.nome}"?`;
     document.getElementById("confirmModal").style.display = "flex";
   }
 
@@ -272,83 +410,30 @@
     document.getElementById("confirmModal").style.display = "none";
   });
 
-
-  document.getElementById("confirmDelete").addEventListener("click", () => {
+  document.getElementById("confirmDelete").addEventListener("click", async () => {
     if (bookToDelete) {
-      bookToDelete.remove();
+      await fetch(`${API_URL}/livros/${bookToDelete}`, {
+        method: "DELETE"
+      });
+      
       showToast("Livro removido!", "error");
       bookToDelete = null;
-    }
-    document.getElementById("confirmModal").style.display = "none";
-  });
-
-  //  VISUALIZAR E EDITAR LIVROS 
-  const modal = document.getElementById("modal");
-  const closeModalBtn = document.getElementById("closeModal");
-  const editForm = document.getElementById("editForm");
-
-  function viewBook(btn) {
-    const li = btn.parentElement.parentElement;
-    document.getElementById("modalTitle").textContent = "Detalhes do Livro";
-    document.getElementById("viewTitle").textContent = li.dataset.title;
-    document.getElementById("viewAuthor").textContent = li.dataset.author;
-    document.getElementById("viewGenre").textContent = li.dataset.genre;
-    document.getElementById("viewYear").textContent = li.dataset.year;
-    document.getElementById("viewDescription").textContent = li.dataset.description;
-    document.getElementById("viewImage").src = li.dataset.image;
-    document.getElementById("viewContent").style.display = "block";
-    editForm.style.display = "none";
-    modal.style.display = "flex";
-  }
-
-  function editBook(btn) {
-    editingBook = btn.parentElement.parentElement;
-    document.getElementById("modalTitle").textContent = "Editar Livro";
-    document.getElementById("editTitle").value = editingBook.dataset.title;
-    document.getElementById("editAuthor").value = editingBook.dataset.author;
-    document.getElementById("editGenre").value = editingBook.dataset.genre;
-    document.getElementById("editYear").value = editingBook.dataset.year;
-    document.getElementById("editDescription").value = editingBook.dataset.description;
-    document.getElementById("editPreview").src = editingBook.dataset.image;
-    document.getElementById("viewContent").style.display = "none";
-    editForm.style.display = "block";
-    modal.style.display = "flex";
-  }
-
-  // Atualiza imagem no modo edição 
-  document.getElementById("editImage").addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        document.getElementById("editPreview").src = reader.result;
-        editingBook.dataset.image = reader.result;
-      };
-      reader.readAsDataURL(file);
+      document.getElementById("confirmModal").style.display = "none";
+      loadBooks();
     }
   });
 
-  // Fechar modal
-  closeModalBtn.addEventListener("click", () => { modal.style.display = "none"; });
-  window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
-
-  // Salvar edição
-  editForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (editingBook) {
-      editingBook.dataset.title = document.getElementById("editTitle").value;
-      editingBook.dataset.author = document.getElementById("editAuthor").value;
-      editingBook.dataset.genre = document.getElementById("editGenre").value;
-      editingBook.dataset.year = document.getElementById("editYear").value;
-      editingBook.dataset.description = document.getElementById("editDescription").value;
-
-      editingBook.querySelector(".book-info").innerHTML = `
-        ${editingBook.dataset.image ? `<img src="${editingBook.dataset.image}" alt="Capa" class="book-cover">` : ""}
-        <span><strong>${editingBook.dataset.title}</strong> - ${editingBook.dataset.author} (${editingBook.dataset.year}) 
-        <br><em>${editingBook.dataset.genre}</em></span>
-      `;
-      showToast("Livro atualizado com sucesso!", "success");
-      modal.style.display = "none";
+  // Fechar modais
+  document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+  });
+  
+  window.addEventListener("click", (e) => {
+    if (e.target === document.getElementById("modal")) {
+      document.getElementById("modal").style.display = "none";
+    }
+    if (e.target === document.getElementById("confirmModal")) {
+      document.getElementById("confirmModal").style.display = "none";
     }
   });
   </script>

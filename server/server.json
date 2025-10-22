@@ -35,6 +35,18 @@
       "nome": "matheus",
       "email": "matheus@hotmail.com",
       "senha": "1974"
+    },
+    {
+      "id": "f7c3",
+      "nome": "isac",
+      "email": "isac@hotmail.com",
+      "senha": "isac1007"
+    },
+    {
+      "id": "8ae2",
+      "nome": "vini",
+      "email": "vini@hotmail.com",
+      "senha": "12345"
     }
   ],
   "livros": [
