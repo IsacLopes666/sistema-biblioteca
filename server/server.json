@@ -47,16 +47,15 @@
       "nome": "vini",
       "email": "vini@hotmail.com",
       "senha": "12345"
+    },
+    {
+      "id": "a140",
+      "nome": "joao",
+      "email": "joao@hotmail.com",
+      "senha": "12345"
     }
   ],
   "livros": [
-    {
-      "id": "101",
-      "nome": "O Eco das Sombras",
-      "descricao": "Um detetive atormentado precisa resolver o assassinato que o conecta ao seu próprio passado sombrio.",
-      "genero": "Suspense Policial",
-      "imagemUrl": "https://example.com/o-eco-das-sombras.jpg"
-    },
     {
       "id": "102",
       "nome": "O Jardim de Cinzas",
