@@ -61,105 +61,105 @@
       "nome": "O Jardim de Cinzas",
       "descricao": "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
       "genero": "Ficção Pós-apocalíptica",
-      "imagemUrl": "https://example.com/o-jardim-de-cinzas.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/51gcPR37FVL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg"
     },
     {
       "id": "103",
       "nome": "O Último Voo do Corvo",
       "descricao": "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
       "genero": "Drama Histórico",
-      "imagemUrl": "https://example.com/o-ultimo-voo-do-corvo.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/A1IBGdv2M-L._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "id": "104",
       "nome": "Fragmentos do Amanhã",
       "descricao": "Cientistas descobrem uma forma de prever o futuro — e o preço é a própria sanidade.",
       "genero": "Ficção Científica",
-      "imagemUrl": "https://example.com/fragmentos-do-amanha.jpg"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ZxzI4_hiBOX_UisYDRt68SmnsJoO1nu5Kw&s"
     },
     {
       "id": "105",
       "nome": "Entre Luzes e Pecados",
       "descricao": "Uma atriz em ascensão esconde um crime enquanto tenta manter a fama.",
       "genero": "Drama Psicológico",
-      "imagemUrl": "https://example.com/entre-luzes-e-pecados.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/61kDI4J0E3L._UF1000,1000_QL80_.jpg"
     },
     {
       "id": "106",
       "nome": "A Canção do Mar Esquecido",
       "descricao": "Um pescador descobre uma sereia ferida e vê seu destino mudar para sempre.",
       "genero": "Fantasia Romântica",
-      "imagemUrl": "https://example.com/a-cancao-do-mar-esquecido.jpg"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQls3O6UfvLuQ0JAe_Ti8xaxbIuKAwOJDtJrA&s"
     },
     {
       "id": "107",
       "nome": "Cidade de Vidro Partido",
       "descricao": "Em uma metrópole futurista, um hacker busca vingança contra o sistema que destruiu sua vida.",
       "genero": "Cyberpunk",
-      "imagemUrl": "https://example.com/cidade-de-vidro-partido.jpg"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoZYuCoahfdlXrO-MF0FFXai9hre6WtUnFaQ&s"
     },
     {
       "id": "108",
       "nome": "Os Ventos do Norte",
       "descricao": "Exploradores enfrentam monstros e tempestades em busca de uma terra lendária.",
       "genero": "Aventura Épica",
-      "imagemUrl": "https://example.com/os-ventos-do-norte.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/81+uGKO-WyL._UF894,1000_QL80_.jpg"
     },
     {
       "id": "109",
       "nome": "Silêncio nas Estrelas",
       "descricao": "Após um desastre espacial, a única sobrevivente luta para retornar à Terra.",
       "genero": "Ficção Científica",
-      "imagemUrl": "https://example.com/silencio-nas-estrelas.jpg"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRstHB4IfQFq5diUkfiAnsK6mlx14YayYTzEQ&s"
     },
     {
       "id": "110",
       "nome": "A Casa das Mariposas",
       "descricao": "Uma mansão antiga esconde segredos sobre a morte misteriosa de uma família inteira.",
       "genero": "Terror Gótico",
-      "imagemUrl": "https://example.com/a-casa-das-mariposas.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/71F0Dy6P12L._AC_UF894,1000_QL80_.jpg"
     },
     {
       "id": "111",
       "nome": "O Círculo das Chamas",
       "descricao": "Cinco jovens descobrem que possuem poderes ligados aos elementos e precisam impedir o fim do mundo.",
       "genero": "Fantasia Juvenil",
-      "imagemUrl": "https://example.com/o-circulo-das-chamas.jpg"
+      "imagemUrl": "https://br.web.img3.acsta.net/pictures/210/002/21000295_20130419230131033.jpg"
     },
     {
       "id": "112",
       "nome": "Além da Névoa",
       "descricao": "Um homem acorda em uma cidade cercada por névoa, sem lembrar quem é.",
       "genero": "Mistério",
-      "imagemUrl": "https://example.com/alem-da-nevoa.jpg"
+      "imagemUrl": "https://i.ytimg.com/vi/wbmM3OBnAEs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBMe2-ksMP37WjSl3q7G_lz6BdSvQ"
     },
     {
       "id": "113",
       "nome": "O Pintor e a Lua",
       "descricao": "Um artista encontra inspiração em um amor impossível e pinta um quadro que muda o destino dos dois.",
       "genero": "Romance Contemporâneo",
-      "imagemUrl": "https://example.com/o-pintor-e-a-lua.jpg"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7RuOZAhTnSYHclhh22w3KbvrZ3OjEW-O3kg&s"
     },
     {
       "id": "114",
       "nome": "O Guardião do Relógio",
       "descricao": "Um relojoeiro descobre um artefato capaz de controlar o tempo.",
       "genero": "Fantasia/Aventura",
-      "imagemUrl": "https://example.com/o-guardiao-do-relogio.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/91dpn+5GGAL._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "id": "115",
       "nome": "As Vozes do Subsolo",
       "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
       "genero": "Ficção Científica / Aventura",
-      "imagemUrl": "https://example.com/as-vozes-do-subsolo.jpg"
+      "imagemUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/66/cf/c766cffe-5d88-01c9-2617-41049be0af25/198595057346.jpg/600x600bf-60.jpg"
     },
     {
       "id": "116",
       "nome": "A Volta Dos que nao foram",
       "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
       "genero": "Ficção Científica / Aventura",
-      "imagemUrl": "https://example.com/a-volta-dos-que-nao-foram.jpg"
+      "imagemUrl": "https://m.media-amazon.com/images/I/61wpiEHyhYL._AC_UF1000,1000_QL80_.jpg"
     }
   ]
 }
