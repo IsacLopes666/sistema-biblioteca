@@ -57,11 +57,13 @@
   ],
   "livros": [
     {
-      "id": "102",
       "nome": "O Jardim de Cinzas",
-      "descricao": "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
+      "autor": "Pedro",
       "genero": "Ficção Pós-apocalíptica",
-      "imagemUrl": "https://m.media-amazon.com/images/I/51gcPR37FVL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg"
+      "ano": "2025",
+      "descricao": "Num mundo devastado, uma jovem tenta cultivar vida onde tudo é morte.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/51gcPR37FVL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg",
+      "id": "102"
     },
     {
       "id": "103",
