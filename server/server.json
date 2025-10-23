@@ -66,102 +66,130 @@
       "id": "102"
     },
     {
-      "id": "103",
       "nome": "O Último Voo do Corvo",
-      "descricao": "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
+      "autor": "Souza Rodrigues",
       "genero": "Drama Histórico",
-      "imagemUrl": "https://m.media-amazon.com/images/I/A1IBGdv2M-L._AC_UF1000,1000_QL80_.jpg"
+      "ano": "2024",
+      "descricao": "Um piloto desaparece em meio a uma guerra civil e deixa para trás um diário cheio de segredos.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/A1IBGdv2M-L._AC_UF1000,1000_QL80_.jpg",
+      "id": "103"
     },
     {
-      "id": "104",
       "nome": "Fragmentos do Amanhã",
+      "autor": "Vinicius Souza",
+      "genero": "Ficção Científica",
+      "ano": "2020",
       "descricao": "Cientistas descobrem uma forma de prever o futuro — e o preço é a própria sanidade.",
-      "genero": "Ficção Científica",
-      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ZxzI4_hiBOX_UisYDRt68SmnsJoO1nu5Kw&s"
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ZxzI4_hiBOX_UisYDRt68SmnsJoO1nu5Kw&s",
+      "id": "104"
     },
     {
-      "id": "105",
       "nome": "Entre Luzes e Pecados",
-      "descricao": "Uma atriz em ascensão esconde um crime enquanto tenta manter a fama.",
+      "autor": "Josue Fernandes",
       "genero": "Drama Psicológico",
-      "imagemUrl": "https://m.media-amazon.com/images/I/61kDI4J0E3L._UF1000,1000_QL80_.jpg"
+      "ano": "2023",
+      "descricao": "Uma atriz em ascensão esconde um crime enquanto tenta manter a fama.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/61kDI4J0E3L._UF1000,1000_QL80_.jpg",
+      "id": "105"
     },
     {
-      "id": "106",
       "nome": "A Canção do Mar Esquecido",
-      "descricao": "Um pescador descobre uma sereia ferida e vê seu destino mudar para sempre.",
+      "autor": "Vinicius Henrique",
       "genero": "Fantasia Romântica",
-      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQls3O6UfvLuQ0JAe_Ti8xaxbIuKAwOJDtJrA&s"
+      "ano": "2025",
+      "descricao": "Um pescador descobre uma sereia ferida e vê seu destino mudar para sempre.",
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQls3O6UfvLuQ0JAe_Ti8xaxbIuKAwOJDtJrA&s",
+      "id": "106"
     },
     {
-      "id": "107",
       "nome": "Cidade de Vidro Partido",
-      "descricao": "Em uma metrópole futurista, um hacker busca vingança contra o sistema que destruiu sua vida.",
+      "autor": "Carlos Henrique",
       "genero": "Cyberpunk",
-      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoZYuCoahfdlXrO-MF0FFXai9hre6WtUnFaQ&s"
+      "ano": "2025",
+      "descricao": "Em uma metrópole futurista, um hacker busca vingança contra o sistema que destruiu sua vida.",
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoZYuCoahfdlXrO-MF0FFXai9hre6WtUnFaQ&s",
+      "id": "107"
     },
     {
-      "id": "108",
       "nome": "Os Ventos do Norte",
-      "descricao": "Exploradores enfrentam monstros e tempestades em busca de uma terra lendária.",
+      "autor": "Gustavo Rodrigues",
       "genero": "Aventura Épica",
-      "imagemUrl": "https://m.media-amazon.com/images/I/81+uGKO-WyL._UF894,1000_QL80_.jpg"
+      "ano": "2025",
+      "descricao": "Exploradores enfrentam monstros e tempestades em busca de uma terra lendária.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/81+uGKO-WyL._UF894,1000_QL80_.jpg",
+      "id": "108"
     },
     {
-      "id": "109",
       "nome": "Silêncio nas Estrelas",
-      "descricao": "Após um desastre espacial, a única sobrevivente luta para retornar à Terra.",
+      "autor": "Joao Rodrigues",
       "genero": "Ficção Científica",
-      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRstHB4IfQFq5diUkfiAnsK6mlx14YayYTzEQ&s"
+      "ano": "2025",
+      "descricao": "Após um desastre espacial, a única sobrevivente luta para retornar à Terra.",
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRstHB4IfQFq5diUkfiAnsK6mlx14YayYTzEQ&s",
+      "id": "109"
     },
     {
-      "id": "110",
       "nome": "A Casa das Mariposas",
-      "descricao": "Uma mansão antiga esconde segredos sobre a morte misteriosa de uma família inteira.",
+      "autor": "Pedro Rodrigues",
       "genero": "Terror Gótico",
-      "imagemUrl": "https://m.media-amazon.com/images/I/71F0Dy6P12L._AC_UF894,1000_QL80_.jpg"
+      "ano": "2014",
+      "descricao": "Uma mansão antiga esconde segredos sobre a morte misteriosa de uma família inteira.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/71F0Dy6P12L._AC_UF894,1000_QL80_.jpg",
+      "id": "110"
     },
     {
-      "id": "111",
       "nome": "O Círculo das Chamas",
-      "descricao": "Cinco jovens descobrem que possuem poderes ligados aos elementos e precisam impedir o fim do mundo.",
+      "autor": "Gustavo Fernandes",
       "genero": "Fantasia Juvenil",
-      "imagemUrl": "https://br.web.img3.acsta.net/pictures/210/002/21000295_20130419230131033.jpg"
+      "ano": "2015",
+      "descricao": "Cinco jovens descobrem que possuem poderes ligados aos elementos e precisam impedir o fim do mundo.",
+      "imagemUrl": "https://br.web.img3.acsta.net/pictures/210/002/21000295_20130419230131033.jpg",
+      "id": "111"
     },
     {
-      "id": "112",
       "nome": "Além da Névoa",
-      "descricao": "Um homem acorda em uma cidade cercada por névoa, sem lembrar quem é.",
+      "autor": "Geovanni",
       "genero": "Mistério",
-      "imagemUrl": "https://i.ytimg.com/vi/wbmM3OBnAEs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBMe2-ksMP37WjSl3q7G_lz6BdSvQ"
+      "ano": "2016",
+      "descricao": "Um homem acorda em uma cidade cercada por névoa, sem lembrar quem é.",
+      "imagemUrl": "https://i.ytimg.com/vi/wbmM3OBnAEs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBMe2-ksMP37WjSl3q7G_lz6BdSvQ",
+      "id": "112"
     },
     {
-      "id": "113",
       "nome": "O Pintor e a Lua",
-      "descricao": "Um artista encontra inspiração em um amor impossível e pinta um quadro que muda o destino dos dois.",
+      "autor": "Alvaro Lopes",
       "genero": "Romance Contemporâneo",
-      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7RuOZAhTnSYHclhh22w3KbvrZ3OjEW-O3kg&s"
+      "ano": "2017",
+      "descricao": "Um artista encontra inspiração em um amor impossível e pinta um quadro que muda o destino dos dois.",
+      "imagemUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7RuOZAhTnSYHclhh22w3KbvrZ3OjEW-O3kg&s",
+      "id": "113"
     },
     {
-      "id": "114",
       "nome": "O Guardião do Relógio",
-      "descricao": "Um relojoeiro descobre um artefato capaz de controlar o tempo.",
+      "autor": "Nicolas",
       "genero": "Fantasia/Aventura",
-      "imagemUrl": "https://m.media-amazon.com/images/I/91dpn+5GGAL._AC_UF1000,1000_QL80_.jpg"
+      "ano": "2018",
+      "descricao": "Um relojoeiro descobre um artefato capaz de controlar o tempo.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/91dpn+5GGAL._AC_UF1000,1000_QL80_.jpg",
+      "id": "114"
     },
     {
-      "id": "115",
       "nome": "As Vozes do Subsolo",
-      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "autor": "Lucas Rodrigues",
       "genero": "Ficção Científica / Aventura",
-      "imagemUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/66/cf/c766cffe-5d88-01c9-2617-41049be0af25/198595057346.jpg/600x600bf-60.jpg"
+      "ano": "2019",
+      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "imagemUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c7/66/cf/c766cffe-5d88-01c9-2617-41049be0af25/198595057346.jpg/600x600bf-60.jpg",
+      "id": "115"
     },
     {
-      "id": "116",
       "nome": "A Volta Dos que nao foram",
-      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "autor": "Gustavo Caldas",
       "genero": "Ficção Científica / Aventura",
-      "imagemUrl": "https://m.media-amazon.com/images/I/61wpiEHyhYL._AC_UF1000,1000_QL80_.jpg"
+      "ano": "2025",
+      "descricao": "Cientistas encontram uma civilização viva abaixo da crosta terrestre.",
+      "imagemUrl": "https://m.media-amazon.com/images/I/61wpiEHyhYL._AC_UF1000,1000_QL80_.jpg",
+      "id": "116"
     }
   ]
 }
