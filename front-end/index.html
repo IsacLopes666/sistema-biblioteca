@@ -139,294 +139,338 @@
   <div id="toast-container"></div>
 
   <script>
-  const API_URL = "http://localhost:3000";
-  let currentUser = null;
-  let editingBook = null;
-  let bookToDelete = null;
+const API_URL = "http://localhost:3000";
+let currentUser = null;
+let editingBook = null;
+let bookToDelete = null;
 
-  function showToast(message, type = "info") {
-    const container = document.getElementById("toast-container");
-    const toast = document.createElement("div");
-    toast.classList.add("toast", type);
-    toast.textContent = message;
-    container.appendChild(toast);
-    setTimeout(() => toast.remove(), 4000);
+function showToast(message, type = "info") {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+  toast.classList.add("toast", type);
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+/* ============================================================
+   ✅ CARREGAR LOGIN SALVO AO ABRIR O SITE
+   ============================================================*/
+const savedUser = localStorage.getItem("usuarioLogado");
+
+if (savedUser) {
+  currentUser = JSON.parse(savedUser);
+
+  document.getElementById("userName").textContent = "👤 " + currentUser.nome;
+  document.getElementById("login-section").classList.remove("active");
+  document.getElementById("list-section").classList.add("active");
+
+  document.getElementById("logoutBtn").style.display = "inline-block";
+  document.getElementById("menu").style.display = "flex";
+
+  loadBooks();
+}
+
+/* ============================================================
+   ✅ TROCA ENTRE LOGIN E CADASTRO
+   ============================================================*/
+document.getElementById("showRegister").addEventListener("click", () => {
+  document.getElementById("login-section").classList.remove("active");
+  document.getElementById("register-section").classList.add("active");
+});
+
+document.getElementById("showLogin").addEventListener("click", () => {
+  document.getElementById("register-section").classList.remove("active");
+  document.getElementById("login-section").classList.add("active");
+});
+
+/* ============================================================
+   ✅ CADASTRO DE USUÁRIO
+   ============================================================*/
+document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("regName").value;
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPassword").value;
+
+  const usersRes = await fetch(`${API_URL}/usuarios`);
+  const users = await usersRes.json();
+  const userExists = users.find(u => u.email === email);
+
+  if (userExists) {
+    showToast("Este email já está cadastrado!", "error");
+    return;
   }
 
-  // Troca entre login e cadastro
-  document.getElementById("showRegister").addEventListener("click", () => {
+  await fetch(`${API_URL}/usuarios`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome: name, email, senha: password }),
+  });
+
+  showToast("Cadastro realizado com sucesso! Faça login.", "success");
+
+  document.getElementById("register-section").classList.remove("active");
+  document.getElementById("login-section").classList.add("active");
+});
+
+/* ============================================================
+   ✅ LOGIN COM SALVAMENTO NO LOCALSTORAGE
+   ============================================================*/
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const senha = document.getElementById("loginPassword").value;
+
+  const res = await fetch(`${API_URL}/usuarios`);
+  const users = await res.json();
+  const user = users.find(u => u.email === email && u.senha === senha);
+
+  if (user) {
+    currentUser = user;
+
+    // ✅ SALVANDO USUÁRIO NO LOCALSTORAGE
+    localStorage.setItem("usuarioLogado", JSON.stringify(user));
+
+    showToast("Login realizado com sucesso!", "success");
+    document.getElementById("userName").textContent = "👤 " + user.nome;
     document.getElementById("login-section").classList.remove("active");
-    document.getElementById("register-section").classList.add("active");
-  });
-  document.getElementById("showLogin").addEventListener("click", () => {
-    document.getElementById("register-section").classList.remove("active");
-    document.getElementById("login-section").classList.add("active");
-  });
-
-  // Cadastro de usuário
-  document.getElementById("registerForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("regName").value;
-    const email = document.getElementById("regEmail").value;
-    const password = document.getElementById("regPassword").value;
-
-    // Verifica se usuário já existe
-    const usersRes = await fetch(`${API_URL}/usuarios`);
-    const users = await usersRes.json();
-    const userExists = users.find(u => u.email === email);
-    
-    if (userExists) {
-      showToast("Este email já está cadastrado!", "error");
-      return;
-    }
-
-    // Cadastra o usuário
-    await fetch(`${API_URL}/usuarios`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        nome: name, 
-        email, 
-        senha: password 
-      }),
-    });
-
-    showToast("Cadastro realizado com sucesso! Faça login.", "success");
-    document.getElementById("register-section").classList.remove("active");
-    document.getElementById("login-section").classList.add("active");
-  });
-
-  // Login
-  document.getElementById("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = document.getElementById("loginEmail").value;
-    const senha = document.getElementById("loginPassword").value;
-
-    const res = await fetch(`${API_URL}/usuarios`);
-    const users = await res.json();
-    const user = users.find(u => u.email === email && u.senha === senha);
-
-    if (user) {
-      currentUser = user;
-      showToast("Login realizado com sucesso!", "success");
-      document.getElementById("userName").textContent = "👤 " + user.nome;
-      document.getElementById("login-section").classList.remove("active");
-      document.getElementById("list-section").classList.add("active");
-      document.getElementById("logoutBtn").style.display = "inline-block";
-      document.getElementById("menu").style.display = "flex";
-      loadBooks();
-    } else {
-      showToast("Email ou senha incorretos.", "error");
-    }
-  });
-
-  // Sair da conta
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-    document.getElementById("login-section").classList.add("active");
-    document.getElementById("logoutBtn").style.display = "none";
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("userName").textContent = "";
-    currentUser = null;
-    showToast("Você saiu da conta.", "info");
-  });
-
-  // Navegação
-  document.getElementById("goList").addEventListener("click", () => {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
     document.getElementById("list-section").classList.add("active");
+    document.getElementById("logoutBtn").style.display = "inline-block";
+    document.getElementById("menu").style.display = "flex";
     loadBooks();
-  });
-  document.getElementById("goRegister").addEventListener("click", () => {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-    document.getElementById("system-section").classList.add("active");
-  });
-
-  // Carrega livros
-  async function loadBooks() {
-    const res = await fetch(`${API_URL}/livros`);
-    const livros = await res.json();
-    const list = document.getElementById("bookList");
-    list.innerHTML = "";
-    
-    livros.forEach(livro => {
-      const li = document.createElement("li");
-      li.dataset.id = livro.id;
-      li.innerHTML = `
-        <div class="book-info">
-          ${livro.imagemUrl ? `<img src="${livro.imagemUrl}" alt="Capa" class="book-cover">` : ""}
-          <span><strong>${livro.nome}</strong> <br><em>${livro.genero}</em></span>
-        </div>
-        <div>
-          <button onclick="viewBook('${livro.id}')">👁 Visualizar</button>
-          <button onclick="editBook('${livro.id}')">✏️ Atualizar</button>
-          <button onclick="removeBook('${livro.id}')">🗑 Excluir</button>
-        </div>
-      `;
-      list.appendChild(li);
-    });
+  } else {
+    showToast("Email ou senha incorretos.", "error");
   }
+});
 
-  // Visualizar livro
-  async function viewBook(bookId) {
-    const res = await fetch(`${API_URL}/livros/${bookId}`);
-    const livro = await res.json();
-    
-    document.getElementById("modalTitle").textContent = "Detalhes do Livro";
-    document.getElementById("viewTitle").textContent = livro.nome;
-    document.getElementById("viewAuthor").textContent = livro.autor || "Não informado";
-    document.getElementById("viewGenre").textContent = livro.genero;
-    document.getElementById("viewYear").textContent = livro.ano || "Não informado";
-    document.getElementById("viewDescription").textContent = livro.descricao;
-    document.getElementById("viewImage").src = livro.imagemUrl || "";
-    document.getElementById("viewContent").style.display = "block";
-    document.getElementById("editForm").style.display = "none";
-    document.getElementById("modal").style.display = "flex";
+/* ============================================================
+   ✅ LOGOUT (LIMPA LOCALSTORAGE)
+   ============================================================*/
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  currentUser = null;
+
+  // ✅ REMOVE LOGIN SALVO
+  localStorage.removeItem("usuarioLogado");
+
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById("login-section").classList.add("active");
+  document.getElementById("logoutBtn").style.display = "none";
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("userName").textContent = "";
+  showToast("Você saiu da conta.", "info");
+});
+
+/* ============================================================
+   ✅ NAVEGAÇÃO
+   ============================================================*/
+document.getElementById("goList").addEventListener("click", () => {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById("list-section").classList.add("active");
+  loadBooks();
+});
+
+document.getElementById("goRegister").addEventListener("click", () => {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById("system-section").classList.add("active");
+});
+
+/* ============================================================
+   ✅ CARREGAR LIVROS
+   ============================================================*/
+async function loadBooks() {
+  const res = await fetch(`${API_URL}/livros`);
+  const livros = await res.json();
+  const list = document.getElementById("bookList");
+  list.innerHTML = "";
+  
+  livros.forEach(livro => {
+    const li = document.createElement("li");
+    li.dataset.id = livro.id;
+    li.innerHTML = `
+      <div class="book-info">
+        ${livro.imagemUrl ? `<img src="${livro.imagemUrl}" alt="Capa" class="book-cover">` : ""}
+        <span><strong>${livro.nome}</strong> <br><em>${livro.genero}</em></span>
+      </div>
+      <div>
+        <button onclick="viewBook('${livro.id}')">👁 Visualizar</button>
+        <button onclick="editBook('${livro.id}')">✏️ Atualizar</button>
+        <button onclick="removeBook('${livro.id}')">🗑 Excluir</button>
+      </div>
+    `;
+    list.appendChild(li);
+  });
+}
+
+/* ============================================================
+   ✅ VISUALIZAR LIVRO
+   ============================================================*/
+async function viewBook(bookId) {
+  const res = await fetch(`${API_URL}/livros/${bookId}`);
+  const livro = await res.json();
+  
+  document.getElementById("modalTitle").textContent = "Detalhes do Livro";
+  document.getElementById("viewTitle").textContent = livro.nome;
+  document.getElementById("viewAuthor").textContent = livro.autor || "Não informado";
+  document.getElementById("viewGenre").textContent = livro.genero;
+  document.getElementById("viewYear").textContent = livro.ano || "Não informado";
+  document.getElementById("viewDescription").textContent = livro.descricao;
+  document.getElementById("viewImage").src = livro.imagemUrl || "";
+  
+  document.getElementById("viewContent").style.display = "block";
+  document.getElementById("editForm").style.display = "none";
+  document.getElementById("modal").style.display = "flex";
+}
+
+/* ============================================================
+   ✅ EDITAR LIVRO
+   ============================================================*/
+async function editBook(bookId) {
+  const res = await fetch(`${API_URL}/livros/${bookId}`);
+  const livro = await res.json();
+  
+  editingBook = livro;
+
+  document.getElementById("modalTitle").textContent = "Editar Livro";
+  document.getElementById("editTitle").value = livro.nome;
+  document.getElementById("editAuthor").value = livro.autor || "";
+  document.getElementById("editGenre").value = livro.genero;
+  document.getElementById("editYear").value = livro.ano || "";
+  document.getElementById("editDescription").value = livro.descricao;
+  document.getElementById("editPreview").src = livro.imagemUrl || "";
+
+  document.getElementById("viewContent").style.display = "none";
+  document.getElementById("editForm").style.display = "block";
+  document.getElementById("modal").style.display = "flex";
+}
+
+/* ============================================================
+   ✅ CADASTRAR LIVRO
+   ============================================================*/
+const bookForm = document.getElementById("bookForm");
+const preview = document.getElementById("preview");
+
+document.getElementById("image").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      preview.src = reader.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
   }
+});
 
-  // Editar livro
-  async function editBook(bookId) {
-    const res = await fetch(`${API_URL}/livros/${bookId}`);
-    const livro = await res.json();
-    
-    editingBook = livro;
-    document.getElementById("modalTitle").textContent = "Editar Livro";
-    document.getElementById("editTitle").value = livro.nome;
-    document.getElementById("editAuthor").value = livro.autor || "";
-    document.getElementById("editGenre").value = livro.genero;
-    document.getElementById("editYear").value = livro.ano || "";
-    document.getElementById("editDescription").value = livro.descricao;
-    document.getElementById("editPreview").src = livro.imagemUrl || "";
-    document.getElementById("viewContent").style.display = "none";
-    document.getElementById("editForm").style.display = "block";
-    document.getElementById("modal").style.display = "flex";
-  }
+bookForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const nome = document.getElementById("title").value;
+  const autor = document.getElementById("author").value;
+  const genero = document.getElementById("genre").value;
+  const ano = document.getElementById("year").value;
+  const descricao = document.getElementById("description").value;
+  const imagemUrl = preview.src || "";
 
-  // Cadastrar livro
-  const bookForm = document.getElementById("bookForm");
-  const preview = document.getElementById("preview");
-
-  document.getElementById("image").addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        preview.src = reader.result;
-        preview.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    }
+  await fetch(`${API_URL}/livros`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, autor, genero, ano, descricao, imagemUrl }),
   });
 
-  bookForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const nome = document.getElementById("title").value;
-    const autor = document.getElementById("author").value;
-    const genero = document.getElementById("genre").value;
-    const ano = document.getElementById("year").value;
-    const descricao = document.getElementById("description").value;
-    const imagemUrl = preview.src || "";
+  bookForm.reset();
+  preview.src = "";
+  preview.style.display = "none";
+  showToast("Livro adicionado com sucesso!", "success");
 
-    await fetch(`${API_URL}/livros`, {
-      method: "POST",
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById("list-section").classList.add("active");
+  loadBooks();
+});
+
+/* ============================================================
+   ✅ ALTERAR IMAGEM NA EDIÇÃO
+   ============================================================*/
+document.getElementById("editImage").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById("editPreview").src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+/* ============================================================
+   ✅ SALVAR EDIÇÃO
+   ============================================================*/
+document.getElementById("editForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (editingBook) {
+    const livroAtualizado = {
+      nome: document.getElementById("editTitle").value,
+      autor: document.getElementById("editAuthor").value,
+      genero: document.getElementById("editGenre").value,
+      ano: document.getElementById("editYear").value,
+      descricao: document.getElementById("editDescription").value,
+      imagemUrl: document.getElementById("editPreview").src || editingBook.imagemUrl
+    };
+
+    await fetch(`${API_URL}/livros/${editingBook.id}`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        nome, 
-        autor, 
-        genero, 
-        ano, 
-        descricao, 
-        imagemUrl 
-      }),
+      body: JSON.stringify(livroAtualizado)
     });
 
-    bookForm.reset();
-    preview.src = "";
-    preview.style.display = "none";
-    showToast("Livro adicionado com sucesso!", "success");
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-    document.getElementById("list-section").classList.add("active");
+    showToast("Livro atualizado com sucesso!", "success");
+    document.getElementById("modal").style.display = "none";
     loadBooks();
-  });
-
-  // Atualizar imagem na edição
-  document.getElementById("editImage").addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        document.getElementById("editPreview").src = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Salvar edição
-  document.getElementById("editForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (editingBook) {
-      const livroAtualizado = {
-        nome: document.getElementById("editTitle").value,
-        autor: document.getElementById("editAuthor").value,
-        genero: document.getElementById("editGenre").value,
-        ano: document.getElementById("editYear").value,
-        descricao: document.getElementById("editDescription").value,
-        imagemUrl: document.getElementById("editPreview").src || editingBook.imagemUrl
-      };
-
-      await fetch(`${API_URL}/livros/${editingBook.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(livroAtualizado)
-      });
-
-      showToast("Livro atualizado com sucesso!", "success");
-      document.getElementById("modal").style.display = "none";
-      loadBooks();
-    }
-  });
-
-  // Remover livro
-  async function removeBook(bookId) {
-    bookToDelete = bookId;
-    const res = await fetch(`${API_URL}/livros/${bookId}`);
-    const livro = await res.json();
-    
-    document.getElementById("confirmMessage").textContent = `Você deseja realmente remover o livro "${livro.nome}"?`;
-    document.getElementById("confirmModal").style.display = "flex";
   }
+});
 
-  document.getElementById("cancelDelete").addEventListener("click", () => {
+/* ============================================================
+   ✅ REMOVER LIVRO
+   ============================================================*/
+async function removeBook(bookId) {
+  bookToDelete = bookId;
+  const res = await fetch(`${API_URL}/livros/${bookId}`);
+  const livro = await res.json();
+  
+  document.getElementById("confirmMessage").textContent = 
+    `Você deseja realmente remover o livro "${livro.nome}"?`;
+
+  document.getElementById("confirmModal").style.display = "flex";
+}
+
+document.getElementById("cancelDelete").addEventListener("click", () => {
+  bookToDelete = null;
+  document.getElementById("confirmModal").style.display = "none";
+});
+
+document.getElementById("confirmDelete").addEventListener("click", async () => {
+  if (bookToDelete) {
+    await fetch(`${API_URL}/livros/${bookToDelete}`, { method: "DELETE" });
+    
+    showToast("Livro removido!", "error");
     bookToDelete = null;
     document.getElementById("confirmModal").style.display = "none";
-  });
+    loadBooks();
+  }
+});
 
-  document.getElementById("confirmDelete").addEventListener("click", async () => {
-    if (bookToDelete) {
-      await fetch(`${API_URL}/livros/${bookToDelete}`, {
-        method: "DELETE"
-      });
-      
-      showToast("Livro removido!", "error");
-      bookToDelete = null;
-      document.getElementById("confirmModal").style.display = "none";
-      loadBooks();
-    }
-  });
+/* ============================================================
+   ✅ FECHAR MODAIS
+   ============================================================*/
+document.getElementById("closeModal").addEventListener("click", () => {
+  document.getElementById("modal").style.display = "none";
+});
 
-  // Fechar modais
-  document.getElementById("closeModal").addEventListener("click", () => {
+window.addEventListener("click", (e) => {
+  if (e.target === document.getElementById("modal")) {
     document.getElementById("modal").style.display = "none";
-  });
-  
-  window.addEventListener("click", (e) => {
-    if (e.target === document.getElementById("modal")) {
-      document.getElementById("modal").style.display = "none";
-    }
-    if (e.target === document.getElementById("confirmModal")) {
-      document.getElementById("confirmModal").style.display = "none";
-    }
-  });
-  </script>
-</body>
-</html>
+  }
+  if (e.target === document.getElementById("confirmModal")) {
+    document.getElementById("confirmModal").style.display = "none";
+  }
+});
+</script>
